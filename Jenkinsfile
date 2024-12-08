@@ -16,7 +16,8 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh "docker run --rm -v /home/ubuntu/jenkins/data/workspace/simulator-front:/app -v /home/ubuntu/apps/front/simulator:/app/dist -e NPM_CONFIG_REGISTRY=https://registry.npm.taobao.org node:${params.NODE_VERSION} sh -c \"cd /app && ls && npm install && npm run build\""
+                //-v /home/ubuntu/apps/front/simulator:/app/dist
+                sh "docker run --rm -v /home/ubuntu/jenkins/data/workspace/simulator-front:/app -e NPM_CONFIG_REGISTRY=https://registry.npm.taobao.org node:${params.NODE_VERSION} sh -c \"cd /app && ls && npm install && npm run build\""
             }
         }
 
