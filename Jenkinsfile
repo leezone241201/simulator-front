@@ -3,7 +3,7 @@ pipeline {
 
     parameters {
         string(name: 'BRANCH_NAME', defaultValue: 'master', description: 'Branch to build')
-        string(name: 'NODE_VERSION', defaultValue: 'node:21.7.3', description: 'Nodejs version')
+        string(name: 'NODE_VERSION', defaultValue: '21.7.3', description: 'Nodejs version')
     }
   
     stages {
@@ -16,7 +16,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh "docker run --rm -v .:/app -v /home/ubuntu/apps/front/simulator:/app/dist -e NPM_CONFIG_REGISTRY=https://registry.npm.taobao.org node:${params.NODE_VERSION} sh -c 'cd /app && npm install && npm run build'"
+                sh "docker run --rm -v .:/app -v /home/ubuntu/apps/front/simulator:/app/dist -e NPM_CONFIG_REGISTRY=https://registry.npm.taobao.org node:${params.NODE_VERSION} sh -c \"cd /app && npm install && npm run build\""
             }
         }
 
