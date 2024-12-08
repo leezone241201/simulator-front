@@ -3,7 +3,7 @@ pipeline {
 
     parameters {
         string(name: 'BRANCH_NAME', defaultValue: 'master', description: 'Branch to build')
-        string(name: 'NODE_VERSION', defaultValue: '21.7.3', description: 'Nodejs version')
+        string(name: 'NODE_VERSION', defaultValue: '22.12.0', description: 'Nodejs version')
     }
   
     stages {
@@ -16,7 +16,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh "docker run --rm -v /home/ubuntu/docker-data/jenkins/data/workspace/simulator-front:/simulator -v /home/ubuntu/apps/front/simulator:/simulator/dist -e NPM_CONFIG_REGISTRY=https://mirrors.cloud.tencent.com/npm/ node:${params.NODE_VERSION} sh -c \"cd /simulator && npm install && npm run build\""
+                sh "docker run --rm -v /home/ubuntu/docker-data/jenkins/data/workspace/simulator-front:/simulator -v /home/ubuntu/apps/front/simulator:/simulator/dist -e NPM_CONFIG_REGISTRY=https://mirrors.cloud.tencent.com/npm/ node:${params.NODE_VERSION} sh -c \"cd /simulator && npm install -g npm@10.9.2 && npm install && npm run build\""
             }
         }
 
